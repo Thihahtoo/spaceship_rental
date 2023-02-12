@@ -23,22 +23,23 @@ def build_neighbour(contract):
         Raises
         ------
         Exception:
-            Missing required keys in provided json body.
+            Request body is empty.
     '''
     neigh_set = set({})
-    for c in contract:
-        if set(c.keys()) == {'name','start','duration','price'}:
-            neig = ()
-            end = c['start'] + c['duration']
-            for j in contract:
-                if j['start'] >= end:
-                    neig = (f"{c['name']}:{c['price']}", f"{j['name']}:{j['price']}")
-                    neigh_set.add(neig)
-                    
-            if not neig:
-                neigh_set.add((f"{c['name']}:{c['price']}", None))
-        else:
-            raise Exception("Missing required keys in provided json body.")
+    if contract:
+        for c in contract:
+            if set(c.keys()) == {'name','start','duration','price'}:
+                neig = ()
+                end = c['start'] + c['duration']
+                for j in contract:
+                    if set(j.keys()) == {'name','start','duration','price'} and j['start'] >= end:
+                        neig = (f"{c['name']}:{c['price']}", f"{j['name']}:{j['price']}")
+                        neigh_set.add(neig)
+                        
+                if not neig:
+                    neigh_set.add((f"{c['name']}:{c['price']}", None))
+    else:
+        raise Exception("Request body is empty")
     return neigh_set
 
 
@@ -89,6 +90,8 @@ def find_path(contract):
             Maximum total profit
     '''
     main_dict = {}
+    best_path = ()
+    max_profit = 0
     neigh_set = build_neighbour(contract)
     tmp_set = neigh_set
     holder_set = neigh_set
@@ -104,7 +107,9 @@ def find_path(contract):
                     holder_set.add(tup1 + (tup2[-1],))
         
         tmp_set = holder_set
-    
-    best_path = max(main_dict, key=main_dict.get)
-    max_profit = main_dict[best_path]
+   
+    if main_dict:
+        best_path = max(main_dict, key=main_dict.get)
+        max_profit = main_dict[best_path]
+        
     return list(best_path), max_profit
