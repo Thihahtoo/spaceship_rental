@@ -76,7 +76,7 @@ Run below command to test API.
 ```
 curl http://127.0.0.1:8080/spaceship/optimize -H 'Content-Type: application/json' -d '[{"name": "Contract2", "start": 3, "duration": 7, "price": 14},{"name": "Contract3", "start": 5, "duration": 9, "price": 8},{"name": "Contract1", "start": 0, "duration": 5, "price": 10},{"name": "Contract4", "start": 5, "duration": 9,"price": 7}]' -X POST
 ```
-or for windows
+For Windows
 ```
 curl http://localhost:8080/spaceship/optimize -H "Content-Type: application/json" -d "[{\"name\": \"Contract2\", \"start\": 3, \"duration\": 7, \"price\": 14},{\"name\": \"Contract3\", \"start\": 5, \"duration\": 9, \"price\": 8},{\"name\": \"Contract1\", \"start\": 0, \"duration\": 5, \"price\": 10},{\"name\": \"Contract4\", \"start\": 5, \"duration\": 9,\"price\": 7}]" -X POST
 ```
