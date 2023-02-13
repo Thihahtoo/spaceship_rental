@@ -1,7 +1,7 @@
 ### The Spaceship Rental Problem
 #### Description
-You're going to optimize the profitability of a small rental company with a single spaceship to rent. You'll
-receive a list a contracts, each order will include:
+We're going to optimize the profitability of a small rental company with a single spaceship to rent. 
+We have a list a contracts, each order will include:
 - a name (String of 64 chars or less)
 - a start hour (int)
 - a duration (int)
@@ -9,7 +9,7 @@ receive a list a contracts, each order will include:
 
 Start hour, duration and price are all positive integers that can quite large.
 
-The goal is to produce a list of contract names maximizing the profit. As there's only a single ship to rent
+Our goal is to produce a list of contract names maximizing the profit. As there's only a single ship to rent
 there should not be any overlap between the accepted contracts and of course not all proposed contracts can
 be picked.
 
@@ -24,7 +24,7 @@ Optimal solution would be `Contract1` and `Contract3` with a total income of `18
 income.
 
 #### Requirements
-Should be setup a clean Python 3.10 environment.
+Setup a clean Python 3.10 environment.
 Install required packages like below:
 ```
 pip3 install flask_restful
@@ -47,7 +47,7 @@ Press CTRL+C to quit
  * Debugger is active!
  * Debugger PIN: 128-818-091
 ```
-The end point required is `/spaceship/optimize` accepting POST requests with a JSON payload containing
+The end point is `/spaceship/optimize` accepting POST requests with a JSON payload containing
 the list of contracts (see below for the format). The server will compute a solution and return a JSON
 object with the total income and the list of contract names (in order) to achieve this income.
 
