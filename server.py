@@ -10,10 +10,13 @@ class Spaceship(Resource):
     def post(self):
         if request.is_json:
             data = json.loads(request.data)
-            path, income = find_path(data)
-            return {"income": income, "path": path}
+            try:
+                path, income = find_path(data)
+                return {"income": income, "path": path}
+            except:
+                return "Invalid request message.", 400
         else:
-            return "Content type is not supported."
+            return "Content type is not supported.", 415
 
 
 api.add_resource(Spaceship, '/spaceship/optimize')
